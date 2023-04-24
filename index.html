@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python-Script in HTML ausführen</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>Python-Script in HTML ausführen</h1>
+    <div id="output"></div>
+    <button onclick="runScript()">Run Script</button>
+    <script>
+      function runScript() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'script.py', true);
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            document.getElementById('output').innerHTML = xhr.responseText;
+          } else {
+            alert('Error: ' + xhr.statusText);
+          }
+        };
+        xhr.onerror = function() {
+          alert('Network Error');
+        };
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
